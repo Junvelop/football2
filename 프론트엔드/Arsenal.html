@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아스날 팀 정보</title>
+</head>
+<body>
+    <div id="info">
+        <!-- 데이터가 표시될 위치 -->
+        <p id="korean-description"></p>
+
+        <!-- 버튼 클릭 시 데이터를 가져오는 JavaScript -->
+        <button onclick="fetchArsenalInfo()">아스날 정보 가져오기</button>
+    </div>
+
+    <!-- Fetch API를 사용하여 데이터를 가져오는 JavaScript 코드 -->
+    <script>
+
+
+
+        function fetchArsenalInfo() {
+            fetch("http://127.0.0.1:8000/arsenal-info/", {
+            method: 'GET',
+            mode: 'cors', // CORS를 활성화
+         })
+        .then(response => response.text())
+        .then(data => document.getElementById("korean-description").innerText = data)
+        .catch(error => console.error('데이터를 가져오는 중 오류 발생:', error));
+}
+
+    </script>
+</body>
+</html>

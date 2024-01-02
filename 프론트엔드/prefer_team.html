@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Your Sports App</title>
+</head>
+<body>
+    <div id="buttons">
+        <!-- 프리미어리그 팀 버튼들 -->
+        <button class="premierLeagueTeamButton" data-team-id="61">Arsenal</button>
+        <button class="premierLeagueTeamButton" data-team-id="62">Aston Villa</button>
+        <!-- 나머지 팀들도 동일한 방식으로 추가 -->
+    </div>
+    <div id="info">
+        <!-- 사용자 선택에 따라 업데이트될 내용이 표시될 곳 -->
+    </div>
+    <script src="main.js"></script>
+    <script>
+        // 프리미어리그 팀 버튼에 이벤트 리스너 추가
+        const premierLeagueTeamButtons = document.querySelectorAll('.premierLeagueTeamButton');
+        premierLeagueTeamButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const teamId = this.getAttribute('data-team-id');
+                // 버튼 클릭 시 해당 팀에 대한 처리 로직 작성
+                // 예를 들어, 선택한 팀의 정보를 가져와서 표시하는 등의 동작 수행
+
+                // 아스날 버튼이 클릭되면 Arsenal.html 페이지로 이동
+                if (teamId === "61") {
+                    window.location.href = "Arsenal.html";
+                }
+                if (teamId === "62") {
+                    window.location.href = "http://127.0.0.1:8000/";
+
+                    // 서버 페이지에서 "저장하기" 버튼 추가
+                    const infoDiv = document.getElementById('info');
+                    const saveButton = document.createElement('button');
+                    saveButton.textContent = '저장하기';
+                    saveButton.addEventListener('click', function() {
+                        // 저장하기 버튼을 눌렀을 때 수행할 동작을 여기에 추가
+                        alert('데이터를 저장합니다.');
+
+                        fetch('http://127.0.0.1:5000/save_data', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ teamId: teamId, additionalData: '원하는 데이터' }),
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            alert(data.message); // 서버로부터 받은 응답 메시지
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+
+                    });
+
+                    infoDiv.innerHTML = ''; // Clear previous content
+                    infoDiv.appendChild(saveButton);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

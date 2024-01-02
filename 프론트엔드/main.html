@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Your Sports App</title>
+</head>
+<body>
+    <div id="buttons">
+        <button id="teamButton">내가 응원하는 팀</button>
+        <button id="playerButton">내가 좋아하는 선수</button>
+        <button id="teamBondButton">나와 우리팀의 친밀도</button>
+        <button id="scheduleButton">경기 일정</button>
+    </div>
+    <div id="info">
+        <!-- 사용자 선택에 따라 업데이트될 내용이 표시될 곳 -->
+    </div>
+    <script src="main.js"></script>
+    <script>
+        // "내가 응원하는 팀" 버튼에 이벤트 리스너 추가
+        document.getElementById('teamButton').addEventListener('click', function() {
+            // 버튼 클릭 시 원하는 페이지로 이동
+            window.location.href = 'prefer_team.html'; // 실제 페이지 URL로 변경
+        });
+
+        
+    </script>
+</body>
+</html>
